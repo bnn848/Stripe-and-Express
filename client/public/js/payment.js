@@ -1,7 +1,7 @@
 // =====================================
 // Stripeをインスタンス化する
 // =====================================
-var stripe = Stripe("pk_test_xxx"); // 公開鍵
+var stripe = Stripe("pk_test_51JMjcNGgJndALrbAIJ6xwtBgbRp3UmRr9FWfE7ddZicnO5vhmLCuYFEQIKoo9beJfpXD9VP8fjIV4rMkoQXPpmRs00F1COQjvw"); // 公開鍵
 var elements = stripe.elements();
 
 // =====================================
@@ -75,7 +75,7 @@ submitButton.addEventListener('click', e => {
           return result.json(); // レスポンスをJSONで取り出す
         })
         .then(response => { // 取り出したJSON受け取って処理する
-          onComplete();
+          onComplete(response);
         });
       }
 
@@ -122,7 +122,7 @@ function onComplete(response) {
 
   if(response.error) {
     onError();
-  } else if (response.paymentIntentState === "succeeded") {
+  } else if (response.paymentIntentStatus === "succeeded") {
     displayMessage();
   } else {
     displayNotYetMessage();
